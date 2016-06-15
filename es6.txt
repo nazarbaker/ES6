@@ -1,0 +1,80 @@
+  Для компіляції es6 -> es5 використовуємо Babel
+npm init -y
+  інсталюємо babel
+npm install babel-cli babel-core babel-preset-es2015 --save-dev
+
+  І в package.json вказуємо:
+"scripts": {
+  "build": "babel src -d dist --presets es2015"
+  "watch": "babel src -d dist --presets es2015 -w"
+}
+"build" - назва скрипту який запуститься в консолі
+babel - команда
+src - папка де знаходяться файли для компіляції
+-d dist - куда буде компілюватися
+--presets es2015 - версія js -> es6
+"watch" - слідкує за змінами
+
+  Запуск
+npm run build
+або
+npm run watch
+
+-------------------------------------------------------
+let
+1) let - видно тільки в блоці
+2) let - не піднімається, тобто видно тільки після об'яви
+  тобто в var би було undefined в let буде error
+      | console.log(a);
+      | let a = 123;
+
+-------------------------------------------------------
+const
+1) const Pi = 3.14159; - пишеться з великої букви
+2) const - може бути обявлена лише раз і не має мінтися!
+  бо буде помилка, але якщо це обєкт то можна міняти його властивості
+3) const - не піднімається.
+-------------------------------------------------------
+spread operator - ...
+1) spread operator - оператор який розгортає масив і витягує його елементи
+ для вставки в інший масив, або як аргументи в функцію.
+2) вставка:
+      | let arr = [1, 2, 3];
+      | let arr2 = [...arr, 4, 5];
+      | // arr2 === [1, 2, 3, 4, 5];
+
+3) в масив вставляється за допомогою методу concat
+    а в функцію за допомогою apply
+
+-------------------------------------------------------
+template string - шаблонні строки
+1) let name = "Nazar"
+'Hi ' + name === `Hi ${name}`
+2) template string мають тип string
+3) console.log(`${x} + ${y} = ${x + y}`); // 2 + 8 = 10
+  тому що перший плюс є частиною строки а другий виразу
+4) додавання тегів:
+      | let name = 'Bill';
+      | console.log(upperName`Hello ${name}`);
+      |
+      | function upperName(literals, ...values) {
+      |   return literals[0] + value.toUpperCase();
+      | }
+тут в 2-ій стрічці upperName - виступає в ролі тега який запускає функцію
+де literals є масив ['Hello', ''], а ...values - name, або декілька аргументів
+-------------------------------------------------------
+functions parameters - параметри функції
+1) default parameters - по замовчуванню:
+  function add(x = 2, y = 3){return x + y}
+2) rest parameters - робить з аргументів функції масив:
+  function sum2(...values){...} => тому можна задавати будь-яку кількість аргументів
+
+  ! див в parameters.js
+-------------------------------------------------------
+for...of
+for...of - цикл який перебирає значення масиву
+      |let browsers = ['Chrome', 'Firefox', 'Edge', 'Safari', 'Opera'];
+      |
+      |for(let browser of browsers) {
+      |  console.log(browser);
+      |}
