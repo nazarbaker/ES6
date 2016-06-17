@@ -28,19 +28,29 @@ function applyForVisa(documents) {
   return promise;
 }
 
-function bookHotel() {
-  console.log('Забукано Готель');
+function getVisa(visa) {
+  console.info('Віза отримана!');
+  // return visa;
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      return resolve(visa);
+    }, 2000);
+  });
 }
 
-function buyTiсkets() {
+function bookHotel(visa) {
+  // return new Promise(function(resolve, reject){
+  //   return Math.random() > 0.5 ? resolve({}) : reject('Нема місць!');
+  // });
+  return Promise.resolve(visa);
+}
+
+function buyTiсkets(booking) {
   console.log('Купили квитки');
+  console.log('Бронь', booking);
 }
 
 // виклик функції з трьома аргументами
-applyForVisa({}).then(function (visa) {
-  return console.info('Віза отримана!');
-}
-// reason => console.error(reason)
-).then(bookHotel).then(buyTiсkets).catch(function (error) {
+applyForVisa({}).then(getVisa).then(bookHotel).then(buyTiсkets).catch(function (error) {
   return console.error(error);
 });

@@ -199,3 +199,25 @@ promise
    promise.then(bookHotel);
    promise.then(buyTickets);
    promise.catch(cancelVacation);
+2) Обєкт Promise - є позамовчуванні в всіх браузерах крім EI до EDGE
+  для IE використовується поліфіл
+
+  Вернутися
+  !!!
+  !!!
+  ------------------------------------------------------------------
+  Symbols
+  1) let symbol = Symbol(); // створення символу
+  2) Можна додавати імя для Symbol для відладки коду
+  let symbol = Symbol('name');
+  При цьому якщо вказати два одинакових імя, вони все одно матимуть різні значення
+  let symbol2 = Symbol('name');
+  console.log(symbol === symbol2); // false
+  3) Якщо використовувати метод for, то другий елемент буде мати значення
+  попереднього. І тоді значення Symbol заноситься в реєстр і до нього можна
+  достукатися з будь якого місця в коді.
+  
+  let s1 = Symbol.for('name');
+  let s2 = Symbol.for('name');
+
+  console.log(s1 === s2); //true
